@@ -3,8 +3,12 @@
   
   <form (submit)="addProduct()">
     <div class="form-group">
-      <label for="name">Product Name:</label>
-      <input type="text" id="name" [(ngModel)]="newProduct.name" name="name" class="form-control" required>
+      <label for="id">Product ID:</label>
+      <input type="number" id="id" [(ngModel)]="newProduct.id" name="id" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Product Title:</label>
+      <input type="text" id="title" [(ngModel)]="newProduct.title" name="title" class="form-control" required>
     </div>
     <div class="form-group">
       <label for="price">Price:</label>
@@ -14,6 +18,22 @@
       <label for="description">Description:</label>
       <textarea id="description" [(ngModel)]="newProduct.description" name="description" class="form-control" required></textarea>
     </div>
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <input type="text" id="category" [(ngModel)]="newProduct.category" name="category" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="image">Image URL:</label>
+      <input type="text" id="image" [(ngModel)]="newProduct.image" name="image" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="rate">Rating (Rate):</label>
+      <input type="number" id="rate" [(ngModel)]="newProduct.rating.rate" name="rate" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="count">Rating (Count):</label>
+      <input type="number" id="count" [(ngModel)]="newProduct.rating.count" name="count" class="form-control" required>
+    </div>
     <button type="submit" class="btn btn-primary">Add Product</button>
   </form>
   
@@ -22,8 +42,13 @@
   <h3>Existing Products</h3>
   <ul class="list-group">
     <li *ngFor="let product of products" class="list-group-item">
-      {{ product.name }} - ${{ product.price }}
-      <button (click)="deleteProduct(product._id)" class="btn btn-danger btn-sm float-end">Delete</button>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <img [src]="product.image" alt="{{ product.title }}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
+          <strong>{{ product.title }}</strong> - ${{ product.price }}
+        </div>
+        <button (click)="deleteProduct(product.id)" class="btn btn-danger btn-sm">Delete</button>
+      </div>
     </li>
   </ul>
 </div>

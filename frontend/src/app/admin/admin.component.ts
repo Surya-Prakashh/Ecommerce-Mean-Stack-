@@ -7,7 +7,7 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  newProduct = { name: '', price: 0, description: '' };
+  newProduct = { id: 0, title: '', price: 0, description: '', category: '', image: '', rating: { rate: 0, count: 0 } };
   products: any[] = [];
 
   constructor(private api: ApiService) {}
@@ -26,7 +26,7 @@ export class AdminComponent implements OnInit {
     this.api.addProduct(this.newProduct).subscribe((result: any) => {
       console.log(result);
       this.getProducts();
-      this.newProduct = { name: '', price: 0, description: '' };
+      this.newProduct = { id: 0, title: '', price: 0, description: '', category: '', image: '', rating: { rate: 0, count: 0 } };
     });
   }
 
